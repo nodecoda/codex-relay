@@ -1,0 +1,5 @@
+services:
+  codex-relay:
+    # 示例：为本地调试放宽资源限制。切勿提交真实密钥。
+    environment:
+      LOG_LEVEL: debug

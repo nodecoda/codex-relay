@@ -1,0 +1,22 @@
+name: Bug Report
+description: Report a problem with the proxy
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Bug Report"
+  - type: input
+    id: version
+    attributes:
+      label: Codex Relay version (image tag or commit)
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs (sanitize any secrets)
+      render: text

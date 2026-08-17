@@ -1,0 +1,14 @@
+model_list:
+  - model_name: deepseek-v4-flash
+    litellm_params:
+      # Convert Codex Responses requests to the upstream Chat Completions API.
+      model: openai/chat_completions/deepseek-v4-flash
+      api_base: os.environ/UPSTREAM_API_BASE
+      api_key: os.environ/UPSTREAM_API_KEY
+      drop_params: true
+      additional_drop_params:
+        - web_search_options
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  telemetry: false

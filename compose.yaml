@@ -1,0 +1,24 @@
+name: codex-relay
+
+services:
+  codex-relay:
+    image: codex-relay:latest
+    build:
+      context: .
+      args:
+        PYTHON_IMAGE: ${PYTHON_IMAGE:-python:3.12-slim}
+        PIP_INDEX_URL: ${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}
+    environment:
+      UPSTREAM_API_BASE: ${UPSTREAM_API_BASE:?set UPSTREAM_API_BASE in .env}
+      UPSTREAM_API_KEY: ${UPSTREAM_API_KEY:?set UPSTREAM_API_KEY in .env}
+      LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:-local-litellm-proxy}
+    ports:
+      - "127.0.0.1:${HOST_PORT:-4000}:4000"
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # Healthcheck is defined in the Dockerfile; compose inherits it.

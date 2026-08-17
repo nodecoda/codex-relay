@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+.omc/
+.omj/
+.omx/
+.venv/
+__pycache__/
+*.py[cod]
+*.log
+*.swp
+*.swo
+.DS_Store
+.vscode/
+.idea/
+compose.override.yaml
