@@ -7,7 +7,9 @@ ARG PYTHON_IMAGE=python:3.12-slim
 ###############################################################################
 FROM ${PYTHON_IMAGE} AS deps
 
-ARG PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+# Default to the official PyPI index. In mainland China, uncomment the
+# Tsinghua/Aliyun/Tencent/USTC mirror instead of overriding PYTHON_IMAGE.
+ARG PIP_INDEX_URL=
 ARG PIP_VERSION=26.1.2
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -18,7 +20,7 @@ WORKDIR /build
 COPY requirements.txt ./
 RUN python -m venv /venv \
     && /venv/bin/pip install --no-cache-dir "pip==${PIP_VERSION}" \
-    && /venv/bin/pip install --no-cache-dir --index-url "${PIP_INDEX_URL}" -r requirements.txt
+    && /venv/bin/pip install --no-cache-dir ${PIP_INDEX_URL:+--index-url "${PIP_INDEX_URL}"} -r requirements.txt
 
 ###############################################################################
 # Stage 2: runtime image

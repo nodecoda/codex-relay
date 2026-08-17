@@ -7,7 +7,7 @@ services:
       context: .
       args:
         PYTHON_IMAGE: ${PYTHON_IMAGE:-python:3.12-slim}
-        PIP_INDEX_URL: ${PIP_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}
+        PIP_INDEX_URL: ${PIP_INDEX_URL:-}
     environment:
       UPSTREAM_API_BASE: ${UPSTREAM_API_BASE:?set UPSTREAM_API_BASE in .env}
       UPSTREAM_API_KEY: ${UPSTREAM_API_KEY:?set UPSTREAM_API_KEY in .env}
@@ -21,4 +21,3 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
-    # Healthcheck is defined in the Dockerfile; compose inherits it.
