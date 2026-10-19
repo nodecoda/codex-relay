@@ -1,2 +1,2 @@
-litellm[proxy]==1.97.0
+litellm[proxy]==1.105.1
 fastapi==0.136.3
